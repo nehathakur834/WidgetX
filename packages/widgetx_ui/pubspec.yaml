@@ -1,0 +1,24 @@
+name: widgetx_ui
+description: A reusable Flutter design system with accessible, themeable, and responsive components.
+version: 0.1.0
+homepage: https://github.com/YOUR_USERNAME/widgetx_ui
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  golden_toolkit: ^0.15.0
+
+flutter:
+  uses-material-design: true
