@@ -184,9 +184,7 @@ class WidgetXButton extends StatelessWidget {
         bg = Colors.transparent;
         fg = isDisabled ? cs.onSurface.withValues(alpha: 0.38) : cs.primary;
         side = BorderSide(
-          color: isDisabled
-              ? cs.onSurface.withValues(alpha: 0.12)
-              : cs.primary,
+          color: isDisabled ? cs.onSurface.withValues(alpha: 0.12) : cs.primary,
         );
       case WidgetXButtonVariant.text:
         bg = Colors.transparent;

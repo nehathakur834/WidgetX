@@ -70,8 +70,7 @@ void main() {
       expect(find.text('Expanded Content'), findsOneWidget);
     });
 
-    testWidgets('shows content when initiallyExpanded is true',
-        (tester) async {
+    testWidgets('shows content when initiallyExpanded is true', (tester) async {
       await tester.pumpWidget(
         _wrap(const WidgetXExpandableCard(
           title: Text('Title'),

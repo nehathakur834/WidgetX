@@ -19,14 +19,18 @@ export 'src/themes/widgetx_theme_extension.dart';
 // Buttons
 export 'src/buttons/widgetx_button.dart';
 export 'src/buttons/widgetx_icon_button.dart';
+export 'src/buttons/widgetx_fab.dart';
+export 'src/buttons/widgetx_toggle_button.dart';
 
 // Inputs
 export 'src/inputs/widgetx_text_field.dart';
 export 'src/inputs/widgetx_checkbox.dart';
-export 'src/inputs/widgetx_radio.dart';
+export 'src/inputs/widgetx_radio.dart'; // exports WidgetXRadio, WidgetXRadioGroup
 export 'src/inputs/widgetx_switch.dart';
 export 'src/inputs/widgetx_slider.dart';
 export 'src/inputs/widgetx_dropdown.dart';
+export 'src/inputs/widgetx_otp_field.dart';
+export 'src/inputs/widgetx_multi_select.dart';
 
 // Cards
 export 'src/cards/widgetx_card.dart';
@@ -39,6 +43,9 @@ export 'src/dialogs/widgetx_bottom_sheet.dart';
 export 'src/navigation/widgetx_app_bar.dart';
 export 'src/navigation/widgetx_bottom_nav.dart';
 export 'src/navigation/widgetx_tab_bar.dart';
+export 'src/navigation/widgetx_nav_rail.dart';
+export 'src/navigation/widgetx_navigation_extras.dart';
+export 'src/navigation/widgetx_pagination.dart';
 
 // Data Display
 export 'src/data_display/widgetx_badge.dart';
@@ -47,6 +54,8 @@ export 'src/data_display/widgetx_avatar.dart';
 export 'src/data_display/widgetx_divider.dart';
 export 'src/data_display/widgetx_empty_state.dart';
 export 'src/data_display/widgetx_list_tile.dart';
+export 'src/data_display/widgetx_timeline.dart';
+export 'src/data_display/widgetx_data_table.dart';
 
 // Feedback
 export 'src/feedback/widgetx_snackbar.dart';
@@ -56,6 +65,9 @@ export 'src/feedback/widgetx_banner.dart';
 
 // Layout
 export 'src/layout/widgetx_responsive.dart';
+
+// Charts
+export 'src/charts/widgetx_charts.dart';
 
 // Utils
 export 'src/utils/widgetx_focus_utils.dart';

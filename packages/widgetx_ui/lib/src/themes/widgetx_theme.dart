@@ -15,16 +15,26 @@ import 'widgetx_theme_extension.dart';
 /// ```
 abstract final class WidgetXTheme {
   /// Returns the WidgetX light [ThemeData].
-  static ThemeData light() => _build(
+  ///
+  /// Pass an optional [seedColor] to generate a [ColorScheme] from that seed
+  /// instead of the default WidgetX colour palette.
+  static ThemeData light({Color? seedColor}) => _build(
         brightness: Brightness.light,
-        colorScheme: _lightColorScheme,
+        colorScheme: seedColor != null
+            ? ColorScheme.fromSeed(seedColor: seedColor, brightness: Brightness.light)
+            : _lightColorScheme,
         extension: WidgetXThemeExtension.light,
       );
 
   /// Returns the WidgetX dark [ThemeData].
-  static ThemeData dark() => _build(
+  ///
+  /// Pass an optional [seedColor] to generate a [ColorScheme] from that seed
+  /// instead of the default WidgetX colour palette.
+  static ThemeData dark({Color? seedColor}) => _build(
         brightness: Brightness.dark,
-        colorScheme: _darkColorScheme,
+        colorScheme: seedColor != null
+            ? ColorScheme.fromSeed(seedColor: seedColor, brightness: Brightness.dark)
+            : _darkColorScheme,
         extension: WidgetXThemeExtension.dark,
       );
 
@@ -103,8 +113,7 @@ abstract final class WidgetXTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
-          padding:
-              const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           textStyle: WidgetXTypography.labelLarge,
           minimumSize: const Size(0, 44),
         ),
@@ -118,8 +127,7 @@ abstract final class WidgetXTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
-          padding:
-              const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           textStyle: WidgetXTypography.labelLarge,
           minimumSize: const Size(0, 44),
         ),
@@ -132,8 +140,7 @@ abstract final class WidgetXTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
-          padding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           textStyle: WidgetXTypography.labelLarge,
           minimumSize: const Size(0, 44),
         ),

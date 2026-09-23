@@ -1,38 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- iOS meta tags & icons -->
+  <!-- SEO -->
+  <meta name="description" content="WidgetX UI — A production-ready Flutter UI design system with reusable components, complete app templates, responsive layouts, animations, and light/dark themes.">
+  <meta name="keywords" content="flutter, ui, design system, widgets, components, templates, material 3, dart, responsive">
+  <meta name="author" content="WidgetX UI">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="WidgetX UI — Flutter Design System">
+  <meta property="og:description" content="Reusable widgets. Complete UI templates. Responsive layouts. Beautiful animations. Production-ready Flutter architecture.">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WidgetX UI — Flutter Design System">
+  <meta name="twitter:description" content="Reusable widgets. Complete UI templates. Responsive layouts. Beautiful animations.">
+
+  <!-- PWA -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="widget_x">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="WidgetX UI">
+  <meta name="theme-color" content="#3B82F6">
+
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>widget_x</title>
   <link rel="manifest" href="manifest.json">
+
+  <title>WidgetX UI — Flutter Design System</title>
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    #loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      gap: 16px;
+    }
+    #loading-icon {
+      width: 48px;
+      height: 48px;
+      background: #3B82F6;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #loading-text {
+      font-size: 14px;
+      color: #64748B;
+    }
+  </style>
 </head>
 <body>
+  <div id="loading">
+    <div id="loading-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+        <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
+      </svg>
+    </div>
+    <div id="loading-text">Loading WidgetX UI…</div>
+  </div>
   <script src="flutter_bootstrap.js" async></script>
+  <script>
+    window.addEventListener('flutter-first-frame', function() {
+      var loading = document.getElementById('loading');
+      if (loading) loading.style.display = 'none';
+    });
+  </script>
 </body>
 </html>

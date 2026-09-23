@@ -95,18 +95,16 @@ class WidgetXThemeExtension extends ThemeExtension<WidgetXThemeExtension> {
   }
 
   @override
-  WidgetXThemeExtension lerp(
-      WidgetXThemeExtension? other, double t) {
+  WidgetXThemeExtension lerp(WidgetXThemeExtension? other, double t) {
     if (other == null) return this;
     return WidgetXThemeExtension(
       primaryColor: Color.lerp(primaryColor, other.primaryColor, t)!,
-      secondaryColor:
-          Color.lerp(secondaryColor, other.secondaryColor, t)!,
+      secondaryColor: Color.lerp(secondaryColor, other.secondaryColor, t)!,
       successColor: Color.lerp(successColor, other.successColor, t)!,
       warningColor: Color.lerp(warningColor, other.warningColor, t)!,
       infoColor: Color.lerp(infoColor, other.infoColor, t)!,
-      surfaceContainerColor: Color.lerp(
-          surfaceContainerColor, other.surfaceContainerColor, t)!,
+      surfaceContainerColor:
+          Color.lerp(surfaceContainerColor, other.surfaceContainerColor, t)!,
       outlineColor: Color.lerp(outlineColor, other.outlineColor, t)!,
       disabledColor: Color.lerp(disabledColor, other.disabledColor, t)!,
       focusColor: Color.lerp(focusColor, other.focusColor, t)!,

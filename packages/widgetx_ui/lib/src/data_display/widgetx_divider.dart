@@ -55,8 +55,7 @@ class WidgetXDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dividerColor =
-        color ?? Theme.of(context).colorScheme.outlineVariant;
+    final dividerColor = color ?? Theme.of(context).colorScheme.outlineVariant;
 
     if (_isVertical) {
       return VerticalDivider(

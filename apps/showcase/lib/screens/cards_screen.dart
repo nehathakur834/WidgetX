@@ -14,26 +14,26 @@ class _CardsScreenState extends State<CardsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: WidgetXAppBar(title: 'Cards'),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
+    final bottom = MediaQuery.paddingOf(context).bottom;
+    return ListView(
+      padding: EdgeInsets.fromLTRB(
+        WidgetXSpacing.md, WidgetXSpacing.md,
+        WidgetXSpacing.md, WidgetXSpacing.md + bottom,
+      ),
         children: [
           const SectionHeader(title: 'Basic Card'),
           WidgetXCard(
             title: const Text('Order Summary'),
             subtitle: const Text('3 items · \$49.99'),
             body: const Text(
-                'Your order has been placed and is being processed.'),
+              'Your order has been placed and is being processed.',
+            ),
             trailing: const Icon(Icons.arrow_forward_ios, size: 16),
             onTap: () {},
           ),
           const SizedBox(height: WidgetXSpacing.sm),
           const SectionHeader(title: 'Loading Card'),
-          const WidgetXCard(
-            isLoading: true,
-            body: SizedBox.shrink(),
-          ),
+          const WidgetXCard(isLoading: true, body: SizedBox.shrink()),
           const SizedBox(height: WidgetXSpacing.sm),
           const SectionHeader(title: 'Selectable Card'),
           WidgetXCard(
@@ -68,7 +68,6 @@ class _CardsScreenState extends State<CardsScreen> {
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 }

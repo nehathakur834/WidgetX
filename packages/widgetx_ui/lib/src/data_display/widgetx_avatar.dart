@@ -21,8 +21,7 @@ class WidgetXAvatar extends StatelessWidget {
     this.foregroundColor,
     this.semanticLabel,
     this.onTap,
-  }) : assert(
-            imageUrl != null || initials != null || icon != null,
+  }) : assert(imageUrl != null || initials != null || icon != null,
             'Provide imageUrl, initials, or icon');
 
   final String? imageUrl;
@@ -74,9 +73,7 @@ class WidgetXAvatar extends StatelessWidget {
         child: Text(
           initials!,
           style: TextStyle(
-              color: fg,
-              fontSize: _fontSize,
-              fontWeight: FontWeight.w600),
+              color: fg, fontSize: _fontSize, fontWeight: FontWeight.w600),
         ),
       );
     } else {

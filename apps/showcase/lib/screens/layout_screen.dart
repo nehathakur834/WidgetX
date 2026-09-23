@@ -7,23 +7,26 @@ class LayoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: WidgetXAppBar(title: 'Responsive Layout'),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
+    final bottom = MediaQuery.paddingOf(context).bottom;
+    return ListView(
+      padding: EdgeInsets.fromLTRB(
+        WidgetXSpacing.md, WidgetXSpacing.md,
+        WidgetXSpacing.md, WidgetXSpacing.md + bottom,
+      ),
         children: [
           const SectionHeader(
             title: 'Current Screen Size',
-            description:
-                'Resize the window to see how breakpoints change.',
+            description: 'Resize the window to see how breakpoints change.',
           ),
           WidgetXResponsiveBuilder(
             builder: (context, size) => WidgetXCard(
               body: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Screen size: ${size.name}',
-                      style: Theme.of(context).textTheme.titleMedium),
+                  Text(
+                    'Screen size: ${size.name}',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
                   const SizedBox(height: WidgetXSpacing.xs),
                   Text(
                     'Width: ${MediaQuery.sizeOf(context).width.toStringAsFixed(0)}px',
@@ -60,7 +63,6 @@ class LayoutScreen extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 }

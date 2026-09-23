@@ -12,17 +12,21 @@ class ButtonsScreen extends StatefulWidget {
 
 class _ButtonsScreenState extends State<ButtonsScreen> {
   bool _loading = false;
+  Set<int> _toggleSelected = {0};
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: WidgetXAppBar(title: 'Buttons'),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
+    final bottom = MediaQuery.paddingOf(context).bottom;
+    return ListView(
+      padding: EdgeInsets.fromLTRB(
+        WidgetXSpacing.md, WidgetXSpacing.md,
+        WidgetXSpacing.md, WidgetXSpacing.md + bottom,
+      ),
         children: [
           const SectionHeader(
             title: 'Variants',
-            description: 'Use the appropriate variant based on action emphasis.',
+            description:
+                'Use the appropriate variant based on action emphasis.',
           ),
           Wrap(
             spacing: WidgetXSpacing.sm,
@@ -96,11 +100,10 @@ class _ButtonsScreenState extends State<ButtonsScreen> {
             runSpacing: WidgetXSpacing.sm,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: WidgetXButtonSize.values
-                .map((s) => WidgetXButton(
-                      label: s.name,
-                      size: s,
-                      onPressed: () {},
-                    ))
+                .map(
+                  (s) =>
+                      WidgetXButton(label: s.name, size: s, onPressed: () {}),
+                )
                 .toList(),
           ),
           const SizedBox(height: WidgetXSpacing.lg),
@@ -134,17 +137,95 @@ class _ButtonsScreenState extends State<ButtonsScreen> {
             ],
           ),
           const SizedBox(height: WidgetXSpacing.lg),
+
+          // Floating Action Buttons
+          const SectionHeader(
+            title: 'Floating Action Buttons',
+            description: 'FABs for primary screen-level actions.',
+          ),
+          Wrap(
+            spacing: WidgetXSpacing.sm,
+            runSpacing: WidgetXSpacing.sm,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              WidgetXFAB(icon: Icons.add, onPressed: () {}),
+              WidgetXFAB(
+                icon: Icons.add,
+                size: WidgetXFABSize.small,
+                onPressed: () {},
+              ),
+              WidgetXFAB(
+                icon: Icons.add,
+                size: WidgetXFABSize.large,
+                onPressed: () {},
+              ),
+              WidgetXFAB(
+                icon: Icons.edit,
+                label: 'Create',
+                onPressed: () {},
+              ),
+            ],
+          ),
+          const SizedBox(height: WidgetXSpacing.lg),
+
+          // Toggle Buttons
+          const SectionHeader(
+            title: 'Toggle Button Group',
+            description:
+                'Single-select and multi-select toggle groups.',
+          ),
+          WidgetXToggleButtonGroup(
+            items: const [
+              WidgetXToggleItem(label: 'Bold', icon: Icons.format_bold),
+              WidgetXToggleItem(label: 'Italic', icon: Icons.format_italic),
+              WidgetXToggleItem(
+                  label: 'Underline', icon: Icons.format_underline),
+            ],
+            selectedIndices: _toggleSelected,
+            onChanged: (s) => setState(() => _toggleSelected = s),
+            allowMultiple: true,
+          ),
+          const SizedBox(height: WidgetXSpacing.sm),
+          WidgetXToggleButtonGroup(
+            items: const [
+              WidgetXToggleItem(label: 'Day'),
+              WidgetXToggleItem(label: 'Week'),
+              WidgetXToggleItem(label: 'Month'),
+            ],
+            selectedIndices: const {1},
+            onChanged: (_) {},
+          ),
+          const SizedBox(height: WidgetXSpacing.lg),
+
           const SectionHeader(title: 'Example Code'),
           const CodeBlock(
-            code: '''WidgetXButton(
+            code: '''// Primary button
+WidgetXButton(
   label: 'Continue',
   variant: WidgetXButtonVariant.primary,
   size: WidgetXButtonSize.large,
   onPressed: () {},
+)
+
+// Floating Action Button
+WidgetXFAB(
+  icon: Icons.add,
+  label: 'Create',
+  onPressed: () {},
+)
+
+// Toggle group (multi-select)
+WidgetXToggleButtonGroup(
+  items: const [
+    WidgetXToggleItem(label: 'Bold', icon: Icons.format_bold),
+    WidgetXToggleItem(label: 'Italic', icon: Icons.format_italic),
+  ],
+  selectedIndices: _selected,
+  onChanged: (s) => setState(() => _selected = s),
+  allowMultiple: true,
 )''',
           ),
         ],
-      ),
-    );
+      );
   }
 }

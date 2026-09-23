@@ -36,7 +36,8 @@ class WidgetXEmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final iconColor = isError ? cs.error : cs.onSurfaceVariant;
-    final effectiveIcon = icon ?? (isError ? Icons.error_outline : Icons.inbox_outlined);
+    final effectiveIcon =
+        icon ?? (isError ? Icons.error_outline : Icons.inbox_outlined);
 
     return Semantics(
       label: semanticLabel ?? title,

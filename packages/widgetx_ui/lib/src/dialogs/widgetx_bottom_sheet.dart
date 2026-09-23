@@ -80,29 +80,40 @@ Future<int?> showWidgetXActionSheet({
   return showWidgetXBottomSheet<int>(
     context: context,
     title: title,
-    body: Column(
+    body: _WidgetXActionList(actions: actions),
+  );
+}
+
+class _WidgetXActionList extends StatelessWidget {
+  const _WidgetXActionList({required this.actions});
+
+  final List<WidgetXActionItem> actions;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         for (var i = 0; i < actions.length; i++)
           ListTile(
             leading: actions[i].icon != null
-                ? Icon(actions[i].icon,
-                    color: actions[i].isDestructive
-                        ? Theme.of(context).colorScheme.error
-                        : null)
+                ? Icon(
+                    actions[i].icon,
+                    color: actions[i].isDestructive ? cs.error : null,
+                  )
                 : null,
             title: Text(
               actions[i].label,
               style: actions[i].isDestructive
-                  ? TextStyle(
-                      color: Theme.of(context).colorScheme.error)
+                  ? TextStyle(color: cs.error)
                   : null,
             ),
             onTap: () => Navigator.of(context).pop(i),
           ),
       ],
-    ),
-  );
+    );
+  }
 }
 
 /// An item in a [showWidgetXActionSheet].

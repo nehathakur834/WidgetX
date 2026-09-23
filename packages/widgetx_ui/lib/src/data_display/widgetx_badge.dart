@@ -36,14 +36,18 @@ class WidgetXBadge extends StatelessWidget {
 
     final (bg, fg) = switch (variant) {
       WidgetXBadgeVariant.primary => (cs.primary, cs.onPrimary),
-      WidgetXBadgeVariant.secondary =>
-        (cs.secondaryContainer, cs.onSecondaryContainer),
+      WidgetXBadgeVariant.secondary => (
+          cs.secondaryContainer,
+          cs.onSecondaryContainer
+        ),
       WidgetXBadgeVariant.success => (const Color(0xFF10B981), Colors.white),
       WidgetXBadgeVariant.warning => (const Color(0xFFF59E0B), Colors.white),
       WidgetXBadgeVariant.error => (cs.error, cs.onError),
       WidgetXBadgeVariant.info => (const Color(0xFF3B82F6), Colors.white),
-      WidgetXBadgeVariant.neutral =>
-        (cs.surfaceContainerHighest, cs.onSurfaceVariant),
+      WidgetXBadgeVariant.neutral => (
+          cs.surfaceContainerHighest,
+          cs.onSurfaceVariant
+        ),
     };
 
     return Semantics(
@@ -76,8 +80,8 @@ class WidgetXOverlayBadge extends StatelessWidget {
     this.showDot = false,
     this.color,
     this.semanticLabel,
-  }) : assert(count != null || showDot,
-            'Provide either count or showDot = true');
+  }) : assert(
+            count != null || showDot, 'Provide either count or showDot = true');
 
   final Widget child;
   final int? count;

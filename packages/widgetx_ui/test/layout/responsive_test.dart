@@ -26,9 +26,12 @@ void main() {
 
     test('respects custom config', () {
       const config = WidgetXBreakpointConfig(tablet: 500, desktop: 900);
-      expect(widgetXScreenSizeOf(499, config: config), WidgetXScreenSize.mobile);
-      expect(widgetXScreenSizeOf(500, config: config), WidgetXScreenSize.tablet);
-      expect(widgetXScreenSizeOf(900, config: config), WidgetXScreenSize.desktop);
+      expect(
+          widgetXScreenSizeOf(499, config: config), WidgetXScreenSize.mobile);
+      expect(
+          widgetXScreenSizeOf(500, config: config), WidgetXScreenSize.tablet);
+      expect(
+          widgetXScreenSizeOf(900, config: config), WidgetXScreenSize.desktop);
     });
   });
 

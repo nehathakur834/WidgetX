@@ -7,6 +7,7 @@ on:
     branches: [main]
 
 jobs:
+  # ── Package: widgetx_ui ──────────────────────────────────────────────────────
   package:
     name: widgetx_ui package
     runs-on: ubuntu-latest
@@ -38,6 +39,7 @@ jobs:
         run: flutter test --reporter=compact
         working-directory: packages/widgetx_ui
 
+  # ── Showcase application ─────────────────────────────────────────────────────
   showcase:
     name: Showcase application
     runs-on: ubuntu-latest
@@ -56,23 +58,22 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-        working-directory: apps/showcase
 
       - name: Check formatting
-        run: dart format --output=none --set-exit-if-changed .
-        working-directory: apps/showcase
+        run: dart format --output=none --set-exit-if-changed lib test
 
       - name: Static analysis
         run: flutter analyze
-        working-directory: apps/showcase
+
+      - name: Run tests
+        run: flutter test --reporter=compact
 
       - name: Build web
-        run: flutter build web --release
-        working-directory: apps/showcase
+        run: flutter build web --release --base-href /widgetx_ui/
 
       - name: Upload web build artifact
         uses: actions/upload-artifact@v4
         with:
           name: showcase-web
-          path: apps/showcase/build/web
+          path: build/web
           retention-days: 7

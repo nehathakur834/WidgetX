@@ -54,10 +54,8 @@ void showWidgetXSnackbar({
           Expanded(
             child: Text(
               message,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: fg),
+              style:
+                  Theme.of(context).textTheme.bodyMedium?.copyWith(color: fg),
             ),
           ),
         ],

@@ -74,8 +74,7 @@ class WidgetXCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final effectivePadding = padding ??
-        const EdgeInsets.all(WidgetXSpacing.md);
+    final effectivePadding = padding ?? const EdgeInsets.all(WidgetXSpacing.md);
 
     Widget content;
     if (isLoading) {
@@ -90,7 +89,10 @@ class WidgetXCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (header != null) ...[header!, const SizedBox(height: WidgetXSpacing.sm)],
+            if (header != null) ...[
+              header!,
+              const SizedBox(height: WidgetXSpacing.sm)
+            ],
             if (title != null || leading != null || trailing != null)
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,7 +112,9 @@ class WidgetXCard extends StatelessWidget {
                           ),
                         if (subtitle != null)
                           DefaultTextStyle(
-                            style: Theme.of(context).textTheme.bodyMedium!
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
                                 .copyWith(color: cs.onSurfaceVariant),
                             child: subtitle!,
                           ),
@@ -142,9 +146,7 @@ class WidgetXCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isSelected
-                ? cs.primary
-                : cs.outlineVariant,
+            color: isSelected ? cs.primary : cs.outlineVariant,
             width: isSelected ? 2 : 1,
           ),
           color: isSelected
@@ -256,7 +258,9 @@ class _WidgetXExpandableCardState extends State<WidgetXExpandableCard>
                             ),
                             if (widget.subtitle != null)
                               DefaultTextStyle(
-                                style: Theme.of(context).textTheme.bodyMedium!
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
                                     .copyWith(color: cs.onSurfaceVariant),
                                 child: widget.subtitle!,
                               ),

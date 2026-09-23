@@ -10,21 +10,22 @@ class FoundationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: WidgetXAppBar(title: 'Foundations'),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
-        children: const [
-          SectionHeader(title: 'Color Tokens'),
-          ColorSwatchGrid(),
-          SizedBox(height: WidgetXSpacing.lg),
-          SectionHeader(title: 'Typography Scale'),
-          TypeScaleList(),
-          SizedBox(height: WidgetXSpacing.lg),
-          SectionHeader(title: 'Spacing Scale'),
-          SpacingScaleList(),
-        ],
+    final bottom = MediaQuery.paddingOf(context).bottom;
+    return ListView(
+      padding: EdgeInsets.fromLTRB(
+        WidgetXSpacing.md, WidgetXSpacing.md,
+        WidgetXSpacing.md, WidgetXSpacing.md + bottom,
       ),
+      children: const [
+        SectionHeader(title: 'Color Tokens'),
+        ColorSwatchGrid(),
+        SizedBox(height: WidgetXSpacing.lg),
+        SectionHeader(title: 'Typography Scale'),
+        TypeScaleList(),
+        SizedBox(height: WidgetXSpacing.lg),
+        SectionHeader(title: 'Spacing Scale'),
+        SpacingScaleList(),
+      ],
     );
   }
 }

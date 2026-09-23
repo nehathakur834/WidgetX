@@ -36,8 +36,7 @@ void main() {
     testWidgets('shows loading indicator when isLoading is true',
         (tester) async {
       await tester.pumpWidget(
-        _wrap(WidgetXButton(
-            label: 'Load', isLoading: true, onPressed: () {})),
+        _wrap(WidgetXButton(label: 'Load', isLoading: true, onPressed: () {})),
       );
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
       expect(find.text('Load'), findsNothing);
@@ -70,14 +69,16 @@ void main() {
       await tester.pumpWidget(
         _wrap(SizedBox(
           width: 400,
-          child: WidgetXButton(
-              label: 'Full', isFullWidth: true, onPressed: () {}),
+          child:
+              WidgetXButton(label: 'Full', isFullWidth: true, onPressed: () {}),
         )),
       );
-      final box = tester.widget<SizedBox>(find.ancestor(
-        of: find.byType(ElevatedButton),
-        matching: find.byType(SizedBox),
-      ).first);
+      final box = tester.widget<SizedBox>(find
+          .ancestor(
+            of: find.byType(ElevatedButton),
+            matching: find.byType(SizedBox),
+          )
+          .first);
       expect(box.width, double.infinity);
     });
 

@@ -23,14 +23,12 @@ void main() {
     });
 
     test('light() includes WidgetXThemeExtension', () {
-      final ext =
-          WidgetXTheme.light().extension<WidgetXThemeExtension>();
+      final ext = WidgetXTheme.light().extension<WidgetXThemeExtension>();
       expect(ext, isNotNull);
     });
 
     test('dark() includes WidgetXThemeExtension', () {
-      final ext =
-          WidgetXTheme.dark().extension<WidgetXThemeExtension>();
+      final ext = WidgetXTheme.dark().extension<WidgetXThemeExtension>();
       expect(ext, isNotNull);
     });
 

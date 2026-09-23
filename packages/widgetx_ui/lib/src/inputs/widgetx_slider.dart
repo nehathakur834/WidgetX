@@ -43,8 +43,7 @@ class WidgetXSlider extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (label != null)
-          Text(label!, style: theme.textTheme.bodyMedium),
+        if (label != null) Text(label!, style: theme.textTheme.bodyMedium),
         Semantics(
           label: semanticLabel ?? label,
           slider: true,

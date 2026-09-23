@@ -110,7 +110,9 @@ class WidgetXResponsiveContainer extends StatelessWidget {
     final maxWidth = switch (size) {
       WidgetXScreenSize.mobile => mobileMaxWidth,
       WidgetXScreenSize.tablet => tabletMaxWidth,
-      WidgetXScreenSize.desktop || WidgetXScreenSize.widescreen => desktopMaxWidth,
+      WidgetXScreenSize.desktop ||
+      WidgetXScreenSize.widescreen =>
+        desktopMaxWidth,
     };
 
     return Center(

@@ -7,10 +7,12 @@ class FeedbackScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: WidgetXAppBar(title: 'Feedback'),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
+    final bottom = MediaQuery.paddingOf(context).bottom;
+    return ListView(
+      padding: EdgeInsets.fromLTRB(
+        WidgetXSpacing.md, WidgetXSpacing.md,
+        WidgetXSpacing.md, WidgetXSpacing.md + bottom,
+      ),
         children: [
           const SectionHeader(title: 'Banners'),
           const WidgetXBanner(
@@ -120,7 +122,6 @@ class FeedbackScreen extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
+      );
   }
 }
