@@ -8,46 +8,49 @@ void _showQuickActionSheet(
   showWidgetXBottomSheet(
     context: context,
     title: action,
-    body: Column(
-      children: [
-        Text(description,
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium
-                ?.copyWith(
-                    color:
-                        Theme.of(context).colorScheme.onSurfaceVariant)),
-        const SizedBox(height: WidgetXSpacing.lg),
-        const WidgetXTextField(
-          label: 'Recipient',
-          hint: 'Email or account number',
-          keyboardType: TextInputType.emailAddress,
-        ),
-        const SizedBox(height: WidgetXSpacing.sm),
-        const WidgetXTextField(
-          label: 'Amount',
-          hint: '0.00',
-          keyboardType: TextInputType.number,
-          prefixIcon: Padding(
-            padding: EdgeInsets.all(12),
-            child: Text('\$', style: TextStyle(fontSize: 16)),
+    body: Builder(
+      builder: (sheetContext) => Column(
+        children: [
+          Text(description,
+              style: Theme.of(sheetContext)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(
+                      color: Theme.of(sheetContext)
+                          .colorScheme
+                          .onSurfaceVariant)),
+          const SizedBox(height: WidgetXSpacing.lg),
+          const WidgetXTextField(
+            label: 'Recipient',
+            hint: 'Email or account number',
+            keyboardType: TextInputType.emailAddress,
           ),
-        ),
-        const SizedBox(height: WidgetXSpacing.lg),
-        WidgetXButton(
-          label: action,
-          variant: WidgetXButtonVariant.primary,
-          isFullWidth: true,
-          onPressed: () {
-            Navigator.of(context).pop();
-            showWidgetXSnackbar(
-              context: context,
-              message: '$action initiated successfully',
-              variant: WidgetXSnackbarVariant.success,
-            );
-          },
-        ),
-      ],
+          const SizedBox(height: WidgetXSpacing.sm),
+          const WidgetXTextField(
+            label: 'Amount',
+            hint: '0.00',
+            keyboardType: TextInputType.number,
+            prefixIcon: Padding(
+              padding: EdgeInsets.all(12),
+              child: Text('\$', style: TextStyle(fontSize: 16)),
+            ),
+          ),
+          const SizedBox(height: WidgetXSpacing.lg),
+          WidgetXButton(
+            label: action,
+            variant: WidgetXButtonVariant.primary,
+            isFullWidth: true,
+            onPressed: () {
+              Navigator.of(sheetContext).pop();
+              showWidgetXSnackbar(
+                context: context,
+                message: '$action initiated successfully',
+                variant: WidgetXSnackbarVariant.success,
+              );
+            },
+          ),
+        ],
+      ),
     ),
   );
 }
@@ -66,7 +69,12 @@ class FinanceDashboardScreen extends StatelessWidget {
         favoriteId: 'tpl-finance',
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(WidgetXSpacing.xl),
+        padding: EdgeInsets.fromLTRB(
+          WidgetXSpacing.xl,
+          WidgetXSpacing.xl,
+          WidgetXSpacing.xl,
+          WidgetXSpacing.xl + MediaQuery.of(context).padding.bottom,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

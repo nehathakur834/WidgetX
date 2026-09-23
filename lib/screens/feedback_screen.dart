@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:widgetx_ui/widgetx_ui.dart';
 import '../catalog/section_header.dart';
-import '../catalog/favorite_button.dart';
 
 class FeedbackScreen extends StatelessWidget {
   const FeedbackScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const WidgetXAppBar(
-        title: 'Feedback',
-        actions: [FavoriteButton(id: 'feedback')],
+    return ListView(
+      padding: EdgeInsets.fromLTRB(
+        WidgetXSpacing.md,
+        WidgetXSpacing.md,
+        WidgetXSpacing.md,
+        WidgetXSpacing.md + MediaQuery.of(context).padding.bottom,
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
-        children: [
+      children: [
           const SectionHeader(title: 'Banners'),
           const WidgetXBanner(
             variant: WidgetXBannerVariant.info,
@@ -123,8 +122,7 @@ class FeedbackScreen extends StatelessWidget {
               WidgetXAvatar(icon: Icons.person, size: WidgetXAvatarSize.xl),
             ],
           ),
-        ],
-      ),
+      ],
     );
   }
 }

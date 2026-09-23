@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:widgetx_ui/widgetx_ui.dart';
 import '../catalog/section_header.dart';
 import '../catalog/code_block.dart';
-import '../catalog/favorite_button.dart';
-
 class ChartsScreen extends StatefulWidget {
   const ChartsScreen({super.key});
 
@@ -45,15 +43,9 @@ class _ChartsScreenState extends State<ChartsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const WidgetXAppBar(
-        title: 'Charts',
-        subtitle: 'Pure-Flutter custom paint charts, no dependencies',
-        actions: [FavoriteButton(id: 'charts')],
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
-        children: [
+    return ListView(
+      padding: const EdgeInsets.all(WidgetXSpacing.md),
+      children: [
           // Bar Chart
           const SectionHeader(
             title: 'Bar Chart',
@@ -228,8 +220,7 @@ WidgetXPieChart(
   donut: true,
 )''',
           ),
-        ],
-      ),
+      ],
     );
   }
 }

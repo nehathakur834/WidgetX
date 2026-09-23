@@ -5,7 +5,9 @@ import '../providers/theme_provider.dart';
 import '../providers/search_provider.dart';
 import '../providers/recent_items_provider.dart';
 import '../providers/favorites_provider.dart';
+import '../providers/nav_history_provider.dart';
 import '../catalog/device_preview_widgets.dart';
+import '../catalog/favorite_button.dart';
 
 class MainShell extends ConsumerStatefulWidget {
   const MainShell({super.key, required this.child});
@@ -109,6 +111,46 @@ class _NavItem {
   final String route;
 }
 
+/// Maps route path → (display title, favoriteId).
+/// A null title means the route is a full-screen template that owns its own
+/// AppBar — the shell must render appBar: null for those routes.
+const _routeMeta = <String, (String?, String?)>{
+  // ── Component screens ────────────────────────────────────────────────────
+  '/': ('Overview', null),
+  '/foundations': ('Foundations', 'foundations'),
+  '/buttons': ('Buttons', 'buttons'),
+  '/inputs': ('Inputs', 'inputs'),
+  '/cards': ('Cards', 'cards'),
+  '/navigation': ('Navigation', 'navigation'),
+  '/dialogs': ('Dialogs & Sheets', 'dialogs'),
+  '/feedback': ('Feedback', 'feedback'),
+  '/data-display': ('Data Display', 'data-display'),
+  '/charts': ('Charts', 'charts'),
+  '/layout': ('Responsive Layout', 'layout'),
+  '/accessibility': ('Accessibility', 'accessibility'),
+  '/templates': ('Templates', null),
+  // ── Template screens — own their own AppBar ──────────────────────────────
+  '/templates/auth/login': (null, null),
+  '/templates/auth/register': (null, null),
+  '/templates/auth/welcome': (null, null),
+  '/templates/auth/onboarding': (null, null),
+  '/templates/auth/forgot-password': (null, null),
+  '/templates/auth/otp': (null, null),
+  '/templates/dashboard': (null, null),
+  '/templates/ecommerce': (null, null),
+  '/templates/ecommerce/product': (null, null),
+  '/templates/ecommerce/cart': (null, null),
+  '/templates/finance': (null, null),
+  '/templates/realestate': (null, null),
+  '/templates/realestate/details': (null, null),
+  '/templates/social': (null, null),
+  '/templates/food': (null, null),
+  '/templates/productivity': (null, null),
+  '/templates/portfolio': (null, null),
+  '/templates/settings': (null, null),
+  '/templates/booking': (null, null),
+};
+
 const _navSections = [
   _NavSection('', [
     _NavItem('Overview', Icons.home_outlined, '/'),
@@ -198,17 +240,38 @@ class _TabletShell extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      drawer: const Drawer(child: _Sidebar(width: 280)),
-      appBar: AppBar(
-        title: const Text('WidgetX UI'),
-        centerTitle: false,
-        actions: [
-          _ThemeToggle(),
-          const SizedBox(width: 8),
-        ],
+    final path = GoRouterState.of(context).uri.path;
+    final meta = _routeMeta[path];
+    final title = meta?.$1;           // null → template owns its own AppBar
+    final favId = meta?.$2;
+    final canPop = ref.watch(navHistoryProvider.select((h) => h.isNotEmpty));
+    return PopScope(
+      canPop: !canPop && path == '/',
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
+        final prev = ref.read(navHistoryProvider.notifier).pop();
+        if (prev != null) {
+          context.go(prev);
+        } else if (path != '/') {
+          context.go('/');
+        }
+      },
+      child: Scaffold(
+        drawer: const Drawer(child: _Sidebar(width: 280)),
+        appBar: title == null
+            ? null
+            : AppBar(
+                title: Text(title),
+                centerTitle: false,
+                actions: [
+                  if (favId != null) FavoriteButton(id: favId),
+                  _FavoritesButton(),
+                  _ThemeToggle(),
+                  const SizedBox(width: 8),
+                ],
+              ),
+        body: child,
       ),
-      body: child,
     );
   }
 }
@@ -229,17 +292,38 @@ class _MobileShell extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      drawer: const Drawer(child: _Sidebar(width: 280)),
-      appBar: AppBar(
-        title: const Text('WidgetX UI'),
-        centerTitle: false,
-        actions: [
-          _ThemeToggle(),
-          const SizedBox(width: 8),
-        ],
+    final path = GoRouterState.of(context).uri.path;
+    final meta = _routeMeta[path];
+    final title = meta?.$1;           // null → template owns its own AppBar
+    final favId = meta?.$2;
+    final canPop = ref.watch(navHistoryProvider.select((h) => h.isNotEmpty));
+    return PopScope(
+      canPop: !canPop && path == '/',
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
+        final prev = ref.read(navHistoryProvider.notifier).pop();
+        if (prev != null) {
+          context.go(prev);
+        } else if (path != '/') {
+          context.go('/');
+        }
+      },
+      child: Scaffold(
+        drawer: const Drawer(child: _Sidebar(width: 280)),
+        appBar: title == null
+            ? null
+            : AppBar(
+                title: Text(title),
+                centerTitle: false,
+                actions: [
+                  if (favId != null) FavoriteButton(id: favId),
+                  _FavoritesButton(),
+                  _ThemeToggle(),
+                  const SizedBox(width: 8),
+                ],
+              ),
+        body: child,
       ),
-      body: child,
     );
   }
 }
@@ -256,6 +340,9 @@ class _Sidebar extends ConsumerWidget {
     final currentLocation = GoRouterState.of(context).uri.path;
     final recents = ref.watch(recentItemsProvider);
 
+    final topPadding = MediaQuery.of(context).padding.top;
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
+
     return SizedBox(
       width: width,
       child: Column(
@@ -263,7 +350,7 @@ class _Sidebar extends ConsumerWidget {
         children: [
           // Logo
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+            padding: EdgeInsets.fromLTRB(16, 20 + topPadding, 16, 16),
             child: Row(
               children: [
                 Container(
@@ -303,8 +390,7 @@ class _Sidebar extends ConsumerWidget {
           // Nav items
           Expanded(
             child: ListView(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              padding: EdgeInsets.fromLTRB(8, 8, 8, 8 + bottomPadding),
               children: [
                 // Recent items section (shown only when populated)
                 if (recents.isNotEmpty) ...[
@@ -373,6 +459,11 @@ class _SidebarItem extends ConsumerWidget {
         onTap: () {
           if (Scaffold.of(context).isDrawerOpen) {
             Navigator.of(context).pop();
+          }
+          // Push current path onto history before navigating away
+          final currentPath = GoRouterState.of(context).uri.path;
+          if (currentPath != item.route) {
+            ref.read(navHistoryProvider.notifier).push(currentPath);
           }
           // Record in recents
           ref.read(recentItemsProvider.notifier).record(
@@ -543,6 +634,13 @@ class _SearchOverlay extends ConsumerWidget {
                     query: query,
                     onSelect: (entry) {
                       onClose();
+                      final currentPath =
+                          GoRouterState.of(context).uri.path;
+                      if (currentPath != entry.route) {
+                        ref
+                            .read(navHistoryProvider.notifier)
+                            .push(currentPath);
+                      }
                       ref
                           .read(recentItemsProvider.notifier)
                           .record(RecentItem(
@@ -783,7 +881,14 @@ class _FavoritesSheet extends ConsumerWidget {
                     ),
                     onTap: route != null
                         ? () {
+                            final current =
+                                GoRouterState.of(context).uri.path;
                             Navigator.of(context).pop();
+                            if (current != route) {
+                              ref
+                                  .read(navHistoryProvider.notifier)
+                                  .push(current);
+                            }
                             context.go(route);
                           }
                         : null,

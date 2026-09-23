@@ -2,21 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:widgetx_ui/widgetx_ui.dart';
 import '../catalog/section_header.dart';
 import '../catalog/code_block.dart';
-import '../catalog/favorite_button.dart';
-
 class DialogsScreen extends StatelessWidget {
   const DialogsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const WidgetXAppBar(
-        title: 'Dialogs & Sheets',
-        actions: [FavoriteButton(id: 'dialogs')],
+    return ListView(
+      padding: EdgeInsets.fromLTRB(
+        WidgetXSpacing.md,
+        WidgetXSpacing.md,
+        WidgetXSpacing.md,
+        WidgetXSpacing.md + MediaQuery.of(context).padding.bottom,
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
-        children: [
+      children: [
           // Alert Dialog
           const SectionHeader(
             title: 'Alert Dialog',
@@ -72,24 +70,27 @@ class DialogsScreen extends StatelessWidget {
           WidgetXButton(
             label: 'Show Custom Dialog',
             variant: WidgetXButtonVariant.outlined,
-            onPressed: () => WidgetXDialog(
-              title: 'Rename File',
-              body: const WidgetXTextField(
-                label: 'File name',
-                hint: 'Enter new name…',
-                autofocus: true,
+            onPressed: () => showDialog<void>(
+              context: context,
+              builder: (dialogContext) => WidgetXDialog(
+                title: 'Rename File',
+                body: const WidgetXTextField(
+                  label: 'File name',
+                  hint: 'Enter new name…',
+                  autofocus: true,
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.of(dialogContext).pop(),
+                    child: const Text('Cancel'),
+                  ),
+                  FilledButton(
+                    onPressed: () => Navigator.of(dialogContext).pop(),
+                    child: const Text('Save'),
+                  ),
+                ],
               ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: const Text('Cancel'),
-                ),
-                FilledButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: const Text('Save'),
-                ),
-              ],
-            ).show(context),
+            ),
           ),
           const SizedBox(height: WidgetXSpacing.lg),
 
@@ -104,29 +105,30 @@ class DialogsScreen extends StatelessWidget {
             onPressed: () => showWidgetXBottomSheet(
               context: context,
               title: 'Share with',
-              body: Wrap(
-                spacing: WidgetXSpacing.md,
-                runSpacing: WidgetXSpacing.md,
-                children:
-                    [
-                      Icons.message_outlined,
-                      Icons.email_outlined,
-                      Icons.link,
-                      Icons.copy,
-                    ].map((icon) {
-                      return InkWell(
-                        onTap: () => Navigator.of(context).pop(),
-                        borderRadius: BorderRadius.circular(12),
-                        child: Padding(
-                          padding: const EdgeInsets.all(WidgetXSpacing.md),
-                          child: Icon(
-                            icon,
-                            size: 28,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
+              body: Builder(
+                builder: (sheetContext) => Wrap(
+                  spacing: WidgetXSpacing.md,
+                  runSpacing: WidgetXSpacing.md,
+                  children: [
+                    Icons.message_outlined,
+                    Icons.email_outlined,
+                    Icons.link,
+                    Icons.copy,
+                  ].map((icon) {
+                    return InkWell(
+                      onTap: () => Navigator.of(sheetContext).pop(),
+                      borderRadius: BorderRadius.circular(12),
+                      child: Padding(
+                        padding: const EdgeInsets.all(WidgetXSpacing.md),
+                        child: Icon(
+                          icon,
+                          size: 28,
+                          color: Theme.of(sheetContext).colorScheme.primary,
                         ),
-                      );
-                    }).toList(),
+                      ),
+                    );
+                  }).toList(),
+                ),
               ),
             ),
           ),
@@ -182,8 +184,7 @@ class DialogsScreen extends StatelessWidget {
   isDestructive: true,
 );''',
           ),
-        ],
-      ),
+      ],
     );
   }
 }

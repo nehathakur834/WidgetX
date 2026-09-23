@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgetx_ui/widgetx_ui.dart';
 import '../catalog/section_header.dart';
-import '../catalog/favorite_button.dart';
 
 class CardsScreen extends StatefulWidget {
   const CardsScreen({super.key});
@@ -15,14 +14,9 @@ class _CardsScreenState extends State<CardsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const WidgetXAppBar(
-        title: 'Cards',
-        actions: [FavoriteButton(id: 'cards')],
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
-        children: [
+    return ListView(
+      padding: const EdgeInsets.all(WidgetXSpacing.md),
+      children: [
           const SectionHeader(title: 'Basic Card'),
           WidgetXCard(
             title: const Text('Order Summary'),
@@ -69,8 +63,7 @@ class _CardsScreenState extends State<CardsScreen> {
               ],
             ),
           ),
-        ],
-      ),
+      ],
     );
   }
 }

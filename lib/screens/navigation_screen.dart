@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:widgetx_ui/widgetx_ui.dart';
 import '../catalog/section_header.dart';
 import '../catalog/code_block.dart';
-import '../catalog/favorite_button.dart';
-
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({super.key});
 
@@ -70,14 +68,14 @@ class _NavigationScreenState extends State<NavigationScreen>
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    return Scaffold(
-      appBar: const WidgetXAppBar(
-        title: 'Navigation',
-        actions: [FavoriteButton(id: 'navigation')],
+    return ListView(
+      padding: EdgeInsets.fromLTRB(
+        WidgetXSpacing.md,
+        WidgetXSpacing.md,
+        WidgetXSpacing.md,
+        WidgetXSpacing.md + MediaQuery.of(context).padding.bottom,
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
-        children: [
+      children: [
           // Tab Bar
           const SectionHeader(
             title: 'Tab Bar',
@@ -252,8 +250,7 @@ class _NavigationScreenState extends State<NavigationScreen>
   onDestinationSelected: (i) => setState(() => _index = i),
 )''',
           ),
-        ],
-      ),
+      ],
     );
   }
 }

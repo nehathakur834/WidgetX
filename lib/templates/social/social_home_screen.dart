@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:widgetx_ui/widgetx_ui.dart';
 import '../../mock/mock_data.dart';
 import '../../../providers/favorites_provider.dart';
@@ -26,7 +27,17 @@ class SocialHomeScreen extends StatelessWidget {
         slivers: [
           SliverAppBar(
             floating: true,
-            title: const Text('WidgetX Social'),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                if (context.canPop()) {
+                  context.pop();
+                } else {
+                  context.go('/templates');
+                }
+              },
+            ),
+            title: const Text('Social'),
             centerTitle: false,
             actions: [
               IconButton(
@@ -99,8 +110,11 @@ class SocialHomeScreen extends StatelessWidget {
               childCount: MockData.posts.length,
             ),
           ),
-          const SliverToBoxAdapter(
-              child: SizedBox(height: WidgetXSpacing.xl)),
+          SliverToBoxAdapter(
+            child: SizedBox(
+                height: WidgetXSpacing.xl +
+                    MediaQuery.of(context).padding.bottom),
+          ),
         ],
       ),
     );

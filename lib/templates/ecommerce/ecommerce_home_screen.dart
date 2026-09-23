@@ -93,7 +93,7 @@ class _EcommerceHomeScreenState extends ConsumerState<EcommerceHomeScreen> {
 
                   // Featured banner
                   Container(
-                    height: 140,
+                    height: 160,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [cs.primary, cs.secondary],
@@ -189,8 +189,11 @@ class _EcommerceHomeScreenState extends ConsumerState<EcommerceHomeScreen> {
               ),
             ),
           ),
-          const SliverToBoxAdapter(
-              child: SizedBox(height: WidgetXSpacing.xl)),
+          SliverToBoxAdapter(
+            child: SizedBox(
+                height: WidgetXSpacing.xl +
+                    MediaQuery.of(context).padding.bottom),
+          ),
         ],
       ),
     );
@@ -214,158 +217,180 @@ class _ProductCard extends ConsumerWidget {
           (items) => items.where((c) => c.product.id == product.id).fold(0, (s, c) => s + c.quantity)),
     );
 
-    return WidgetXCard(
-      onTap: () => context.go('/templates/ecommerce/product',
-          extra: product),
-      semanticDescription: 'View ${product.name} details',
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Image placeholder with overlay
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: cs.surfaceContainerHighest,
-                borderRadius: BorderRadius.circular(WidgetXRadius.sm),
-              ),
-              child: Stack(
+    return Semantics(
+      label: 'View ${product.name} details',
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: cs.outlineVariant),
+          color: cs.surface,
+        ),
+        child: Material(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(12),
+          child: InkWell(
+            onTap: () => context.go('/templates/ecommerce/product',
+                extra: product),
+            borderRadius: BorderRadius.circular(12),
+            child: Padding(
+              padding: const EdgeInsets.all(WidgetXSpacing.sm),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(
-                    child: Icon(Icons.image_outlined,
-                        size: 40, color: cs.outlineVariant),
+                  // Image placeholder with overlay
+                  Expanded(
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: cs.surfaceContainerHighest,
+                        borderRadius: BorderRadius.circular(WidgetXRadius.sm),
+                      ),
+                      child: Stack(
+                        children: [
+                          Center(
+                            child: Icon(Icons.image_outlined,
+                                size: 40, color: cs.outlineVariant),
+                          ),
+                          if (product.isNew)
+                            Positioned(
+                              top: 6, left: 6,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 6, vertical: 2),
+                                decoration: BoxDecoration(
+                                  color: cs.primary,
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                child: Text('NEW',
+                                    style: tt.labelSmall
+                                        ?.copyWith(color: cs.onPrimary)),
+                              ),
+                            ),
+                          if (product.isFeatured)
+                            Positioned(
+                              top: 6, left: 6,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 6, vertical: 2),
+                                decoration: BoxDecoration(
+                                  color: cs.tertiary,
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                child: Text('HOT',
+                                    style: tt.labelSmall
+                                        ?.copyWith(color: cs.onTertiary)),
+                              ),
+                            ),
+                          // Wishlist heart
+                          Positioned(
+                            top: 4, right: 4,
+                            child: Semantics(
+                              label: isFav
+                                  ? 'Remove ${product.name} from wishlist'
+                                  : 'Add ${product.name} to wishlist',
+                              button: true,
+                              child: InkWell(
+                                onTap: () => ref
+                                    .read(favoritesProvider.notifier)
+                                    .toggle(wishlistId),
+                                borderRadius: BorderRadius.circular(20),
+                                child: Container(
+                                  padding: const EdgeInsets.all(6),
+                                  decoration: BoxDecoration(
+                                    color: cs.surface.withValues(alpha: 0.9),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(
+                                    isFav
+                                        ? Icons.favorite
+                                        : Icons.favorite_border,
+                                    size: 16,
+                                    color: isFav
+                                        ? Colors.red
+                                        : cs.onSurfaceVariant,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  if (product.isNew)
-                    Positioned(
-                      top: 6, left: 6,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 6, vertical: 2),
-                        decoration: BoxDecoration(
-                          color: cs.primary,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text('NEW',
+                  const SizedBox(height: WidgetXSpacing.sm),
+                  Text(product.name,
+                      style: tt.bodySmall
+                          ?.copyWith(fontWeight: FontWeight.w500),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis),
+                  const SizedBox(height: WidgetXSpacing.xs),
+                  Row(
+                    children: [
+                      Icon(Icons.star,
+                          size: 12, color: Colors.amber.shade600),
+                      const SizedBox(width: 2),
+                      Expanded(
+                        child: Text(
+                            '${product.rating} (${product.reviewCount})',
                             style: tt.labelSmall
-                                ?.copyWith(color: cs.onPrimary)),
+                                ?.copyWith(color: cs.onSurfaceVariant)),
                       ),
-                    ),
-                  if (product.isFeatured)
-                    Positioned(
-                      top: 6, left: 6,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 6, vertical: 2),
-                        decoration: BoxDecoration(
-                          color: cs.tertiary,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text('HOT',
-                            style: tt.labelSmall
-                                ?.copyWith(color: cs.onTertiary)),
+                    ],
+                  ),
+                  const SizedBox(height: WidgetXSpacing.xs),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                            '\$${product.price.toStringAsFixed(2)}',
+                            style: tt.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w700,
+                                color: cs.primary)),
                       ),
-                    ),
-                  // Wishlist heart
-                  Positioned(
-                    top: 4, right: 4,
-                    child: Semantics(
-                      label: isFav
-                          ? 'Remove ${product.name} from wishlist'
-                          : 'Add ${product.name} to wishlist',
-                      button: true,
-                      child: InkWell(
-                        onTap: () => ref
-                            .read(favoritesProvider.notifier)
-                            .toggle(wishlistId),
-                        borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          padding: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            color:
-                                cs.surface.withValues(alpha: 0.9),
-                            shape: BoxShape.circle,
+                      // Add to cart button
+                      Semantics(
+                        label: cartQty > 0
+                            ? '${product.name} in cart: $cartQty'
+                            : 'Add ${product.name} to cart',
+                        button: true,
+                        child: InkWell(
+                          onTap: () {
+                            ref.read(cartProvider.notifier).add(product);
+                            showWidgetXSnackbar(
+                              context: context,
+                              message: 'Added to cart',
+                              variant: WidgetXSnackbarVariant.success,
+                            );
+                          },
+                          borderRadius: BorderRadius.circular(6),
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: cartQty > 0
+                                  ? cs.primaryContainer
+                                  : cs.primaryContainer
+                                      .withValues(alpha: 0.5),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: cartQty > 0
+                                ? Text('$cartQty',
+                                    style: tt.labelMedium?.copyWith(
+                                        color: cs.onPrimaryContainer,
+                                        fontWeight: FontWeight.w700))
+                                : Icon(Icons.add,
+                                    size: 16,
+                                    color: cs.onPrimaryContainer),
                           ),
-                          child: Icon(
-                            isFav
-                                ? Icons.favorite
-                                : Icons.favorite_border,
-                            size: 16,
-                            color: isFav
-                                ? Colors.red
-                                : cs.onSurfaceVariant,
-                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),
             ),
           ),
-          const SizedBox(height: WidgetXSpacing.sm),
-          Text(product.name,
-              style: tt.bodySmall?.copyWith(fontWeight: FontWeight.w500),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis),
-          const SizedBox(height: WidgetXSpacing.xs),
-          Row(
-            children: [
-              Icon(Icons.star, size: 12, color: Colors.amber.shade600),
-              const SizedBox(width: 2),
-              Expanded(
-                child: Text(
-                    '${product.rating} (${product.reviewCount})',
-                    style: tt.labelSmall
-                        ?.copyWith(color: cs.onSurfaceVariant)),
-              ),
-            ],
-          ),
-          const SizedBox(height: WidgetXSpacing.xs),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                    '\$${product.price.toStringAsFixed(2)}',
-                    style: tt.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w700, color: cs.primary)),
-              ),
-              // Add to cart button
-              Semantics(
-                label: cartQty > 0
-                    ? '${product.name} in cart: $cartQty'
-                    : 'Add ${product.name} to cart',
-                button: true,
-                child: InkWell(
-                  onTap: () {
-                    ref.read(cartProvider.notifier).add(product);
-                    showWidgetXSnackbar(
-                      context: context,
-                      message: 'Added to cart',
-                      variant: WidgetXSnackbarVariant.success,
-                    );
-                  },
-                  borderRadius: BorderRadius.circular(6),
-                  child: Container(
-                    padding: const EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      color: cartQty > 0
-                          ? cs.primaryContainer
-                          : cs.primaryContainer.withValues(alpha: 0.5),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: cartQty > 0
-                        ? Text('$cartQty',
-                            style: tt.labelMedium?.copyWith(
-                                color: cs.onPrimaryContainer,
-                                fontWeight: FontWeight.w700))
-                        : Icon(Icons.add,
-                            size: 16, color: cs.onPrimaryContainer),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }

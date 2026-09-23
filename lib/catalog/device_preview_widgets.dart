@@ -5,7 +5,7 @@ import '../providers/device_preview_provider.dart';
 /// A toggle control for the device preview mode.
 ///
 /// Shows three buttons: Mobile, Tablet, Desktop.
-/// Intended for use in the top bar of the showcase.
+/// Intended for use in the top bar of the app.
 class DevicePreviewToggle extends ConsumerWidget {
   const DevicePreviewToggle({super.key});
 

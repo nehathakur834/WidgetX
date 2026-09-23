@@ -102,7 +102,12 @@ class _AnalyticsDashboardScreenState extends State<AnalyticsDashboardScreen> {
         favoriteId: 'tpl-dashboard',
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(WidgetXSpacing.xl),
+        padding: EdgeInsets.fromLTRB(
+          WidgetXSpacing.xl,
+          WidgetXSpacing.xl,
+          WidgetXSpacing.xl,
+          WidgetXSpacing.xl + MediaQuery.of(context).padding.bottom,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

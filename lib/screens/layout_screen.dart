@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:widgetx_ui/widgetx_ui.dart';
 import '../catalog/section_header.dart';
-import '../catalog/favorite_button.dart';
 
 class LayoutScreen extends StatelessWidget {
   const LayoutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const WidgetXAppBar(
-        title: 'Responsive Layout',
-        actions: [FavoriteButton(id: 'layout')],
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
-        children: [
+    return ListView(
+      padding: const EdgeInsets.all(WidgetXSpacing.md),
+      children: [
           const SectionHeader(
             title: 'Current Screen Size',
             description: 'Resize the window to see how breakpoints change.',
@@ -64,8 +58,7 @@ class LayoutScreen extends StatelessWidget {
               ),
             ),
           ),
-        ],
-      ),
+      ],
     );
   }
 }

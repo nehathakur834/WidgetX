@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:widgetx_ui/widgetx_ui.dart';
 import '../catalog/section_header.dart';
 import '../catalog/code_block.dart';
-import '../catalog/favorite_button.dart';
-
 class ButtonsScreen extends StatefulWidget {
   const ButtonsScreen({super.key});
 
@@ -17,14 +15,14 @@ class _ButtonsScreenState extends State<ButtonsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const WidgetXAppBar(
-        title: 'Buttons',
-        actions: [FavoriteButton(id: 'buttons')],
+    return ListView(
+      padding: EdgeInsets.fromLTRB(
+        WidgetXSpacing.md,
+        WidgetXSpacing.md,
+        WidgetXSpacing.md,
+        WidgetXSpacing.md + MediaQuery.of(context).padding.bottom,
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
-        children: [
+      children: [
           const SectionHeader(
             title: 'Variants',
             description:
@@ -227,8 +225,7 @@ WidgetXToggleButtonGroup(
   allowMultiple: true,
 )''',
           ),
-        ],
-      ),
+      ],
     );
   }
 }

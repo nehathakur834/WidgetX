@@ -168,14 +168,9 @@ class TemplatesScreen extends StatelessWidget {
       grouped.putIfAbsent(t.category, () => []).add(t);
     }
 
-    return Scaffold(
-      appBar: const WidgetXAppBar(
-        title: 'Templates',
-        subtitle: '21 complete UI templates — all local, no backend',
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
-        children: [
+    return ListView(
+      padding: const EdgeInsets.all(WidgetXSpacing.md),
+      children: [
           const WidgetXBanner(
             variant: WidgetXBannerVariant.info,
             message:
@@ -204,8 +199,7 @@ class TemplatesScreen extends StatelessWidget {
               ),
             const SizedBox(height: WidgetXSpacing.sm),
           ],
-        ],
-      ),
+      ],
     );
   }
 }

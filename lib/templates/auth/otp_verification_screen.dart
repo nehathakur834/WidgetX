@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:go_router/go_router.dart';
 import 'package:widgetx_ui/widgetx_ui.dart';
 
 /// OTP Verification Screen — shown after register or forgot-password flow.
@@ -32,13 +33,26 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
       ),
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(WidgetXSpacing.xl),
+          padding: EdgeInsets.fromLTRB(
+            WidgetXSpacing.xl,
+            WidgetXSpacing.xl,
+            WidgetXSpacing.xl,
+            WidgetXSpacing.xl + MediaQuery.of(context).padding.bottom,
+          ),
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 420),
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 300),
               child: _verified
-                  ? _SuccessState(onDone: () => Navigator.of(context).pop())
+                  ? _SuccessState(
+                      onDone: () {
+                        if (context.canPop()) {
+                          context.pop();
+                        } else {
+                          context.go('/templates/auth/login');
+                        }
+                      },
+                    )
                   : _OtpForm(onVerify: _verify, onResend: _resend),
             ),
           ),

@@ -102,7 +102,12 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(WidgetXSpacing.xl),
+              padding: EdgeInsets.fromLTRB(
+                WidgetXSpacing.xl,
+                WidgetXSpacing.xl,
+                WidgetXSpacing.xl,
+                WidgetXSpacing.xl + MediaQuery.of(context).padding.bottom,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

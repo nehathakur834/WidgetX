@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:go_router/go_router.dart';
 import 'package:widgetx_ui/widgetx_ui.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -35,7 +36,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       ),
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(WidgetXSpacing.xl),
+          padding: EdgeInsets.fromLTRB(
+            WidgetXSpacing.xl,
+            WidgetXSpacing.xl,
+            WidgetXSpacing.xl,
+            WidgetXSpacing.xl + MediaQuery.of(context).padding.bottom,
+          ),
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 420),
             child: AnimatedSwitcher(
@@ -164,7 +170,7 @@ class _SuccessView extends StatelessWidget {
 
         WidgetXButton(
           label: 'Back to sign in',
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => context.go('/templates/auth/login'),
           variant: WidgetXButtonVariant.outlined,
           isFullWidth: true,
           leadingIcon: const Icon(Icons.arrow_back, size: 18),

@@ -4,8 +4,8 @@ import 'package:widgetx_ui/widgetx_ui.dart';
 import '../providers/theme_provider.dart';
 import '../routing/app_router.dart';
 
-class ShowcaseApp extends ConsumerWidget {
-  const ShowcaseApp({super.key});
+class WidgetXApp extends ConsumerWidget {
+  const WidgetXApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

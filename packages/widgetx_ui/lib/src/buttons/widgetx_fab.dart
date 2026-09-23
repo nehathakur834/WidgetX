@@ -34,6 +34,7 @@ class WidgetXFAB extends StatelessWidget {
     this.semanticLabel,
     this.backgroundColor,
     this.foregroundColor,
+    this.heroTag,
   });
 
   /// Icon to display inside the FAB.
@@ -57,6 +58,11 @@ class WidgetXFAB extends StatelessWidget {
   /// Optional foreground color override.
   final Color? foregroundColor;
 
+  /// Hero tag for the FAB. Defaults to [null], which disables the hero
+  /// animation. Set to a unique value when using a single FAB as a
+  /// [Scaffold.floatingActionButton].
+  final Object? heroTag;
+
   double get _iconSize => switch (size) {
         WidgetXFABSize.small => 18,
         WidgetXFABSize.regular => 24,
@@ -75,6 +81,7 @@ class WidgetXFAB extends StatelessWidget {
     if (label != null && label!.isNotEmpty) {
       // Extended FAB
       fab = FloatingActionButton.extended(
+        heroTag: heroTag,
         onPressed: onPressed,
         backgroundColor: bg,
         foregroundColor: fg,
@@ -84,6 +91,7 @@ class WidgetXFAB extends StatelessWidget {
       );
     } else if (size == WidgetXFABSize.small) {
       fab = FloatingActionButton.small(
+        heroTag: heroTag,
         onPressed: onPressed,
         backgroundColor: bg,
         foregroundColor: fg,
@@ -92,6 +100,7 @@ class WidgetXFAB extends StatelessWidget {
       );
     } else if (size == WidgetXFABSize.large) {
       fab = FloatingActionButton.large(
+        heroTag: heroTag,
         onPressed: onPressed,
         backgroundColor: bg,
         foregroundColor: fg,
@@ -100,6 +109,7 @@ class WidgetXFAB extends StatelessWidget {
       );
     } else {
       fab = FloatingActionButton(
+        heroTag: heroTag,
         onPressed: onPressed,
         backgroundColor: bg,
         foregroundColor: fg,

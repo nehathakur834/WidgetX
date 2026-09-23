@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:widgetx_ui/widgetx_ui.dart';
 import '../providers/recent_items_provider.dart';
+import '../providers/nav_history_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -267,12 +268,12 @@ class _DesktopLayout extends StatelessWidget {
 
 // ── Sidebar ──────────────────────────────────────────────────────────────────
 
-class _Sidebar extends StatelessWidget {
+class _Sidebar extends ConsumerWidget {
   const _Sidebar({required this.categories});
   final List<_Category> categories;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final cs = Theme.of(context).colorScheme;
     final currentRoute = GoRouterState.of(context).uri.path;
 
@@ -309,7 +310,13 @@ class _Sidebar extends StatelessWidget {
                 return Semantics(
                   selected: isActive,
                   child: InkWell(
-                    onTap: () => context.go(cat.route),
+                    onTap: () {
+                      final current = GoRouterState.of(context).uri.path;
+                      if (current != cat.route) {
+                        ref.read(navHistoryProvider.notifier).push(current);
+                      }
+                      context.go(cat.route);
+                    },
                     borderRadius: BorderRadius.circular(8),
                     child: AnimatedContainer(
                       duration: WidgetXMotion.fast,
@@ -471,15 +478,21 @@ class _FeaturePill extends StatelessWidget {
 
 // ── Category card ─────────────────────────────────────────────────────────────
 
-class _CategoryCard extends StatelessWidget {
+class _CategoryCard extends ConsumerWidget {
   const _CategoryCard({required this.category});
   final _Category category;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final cs = Theme.of(context).colorScheme;
     return WidgetXCard(
-      onTap: () => context.go(category.route),
+      onTap: () {
+        final current = GoRouterState.of(context).uri.path;
+        if (current != category.route) {
+          ref.read(navHistoryProvider.notifier).push(current);
+        }
+        context.go(category.route);
+      },
       semanticDescription: 'Navigate to ${category.title}',
       body: Row(
         children: [
@@ -638,7 +651,13 @@ class _FeaturedSection extends ConsumerWidget {
                 ),
                 const Spacer(),
                 TextButton(
-                  onPressed: () => context.go('/templates'),
+                  onPressed: () {
+                    final current = GoRouterState.of(context).uri.path;
+                    if (current != '/templates') {
+                      ref.read(navHistoryProvider.notifier).push(current);
+                    }
+                    context.go('/templates');
+                  },
                   child: const Text('View all'),
                 ),
               ],
@@ -673,6 +692,10 @@ class _FeaturedTemplateCard extends ConsumerWidget {
     final cs = Theme.of(context).colorScheme;
     return InkWell(
       onTap: () {
+        final current = GoRouterState.of(context).uri.path;
+        if (current != template.route) {
+          ref.read(navHistoryProvider.notifier).push(current);
+        }
         ref.read(recentItemsProvider.notifier).record(
               RecentItem(
                 id: template.route,

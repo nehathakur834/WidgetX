@@ -108,8 +108,11 @@ class _PropertyHomeScreenState extends State<PropertyHomeScreen> {
               ),
             ),
           ),
-          const SliverToBoxAdapter(
-              child: SizedBox(height: WidgetXSpacing.xl)),
+          SliverToBoxAdapter(
+            child: SizedBox(
+                height: WidgetXSpacing.xl +
+                    MediaQuery.of(context).padding.bottom),
+          ),
         ],
       ),
     );

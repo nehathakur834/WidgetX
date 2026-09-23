@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:widgetx_ui/widgetx_ui.dart';
 import 'otp_verification_screen.dart';
 
@@ -68,7 +69,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(WidgetXSpacing.xl),
+          padding: EdgeInsets.fromLTRB(
+            WidgetXSpacing.xl,
+            WidgetXSpacing.xl,
+            WidgetXSpacing.xl,
+            WidgetXSpacing.xl + MediaQuery.of(context).padding.bottom,
+          ),
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 420),
             child: Column(
@@ -203,7 +209,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   children: [
                     Text('Already have an account?', style: tt.bodyMedium),
                     TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () => context.go('/templates/auth/login'),
                       child: const Text('Sign in'),
                     ),
                   ],

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:widgetx_ui/widgetx_ui.dart';
 import '../catalog/section_header.dart';
 import '../catalog/code_block.dart';
-import '../catalog/favorite_button.dart';
-
 class DataDisplayScreen extends StatefulWidget {
   const DataDisplayScreen({super.key});
 
@@ -76,14 +74,14 @@ class _DataDisplayScreenState extends State<DataDisplayScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const WidgetXAppBar(
-        title: 'Data Display',
-        actions: [FavoriteButton(id: 'data-display')],
+    return ListView(
+      padding: EdgeInsets.fromLTRB(
+        WidgetXSpacing.md,
+        WidgetXSpacing.md,
+        WidgetXSpacing.md,
+        WidgetXSpacing.md + MediaQuery.of(context).padding.bottom,
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
-        children: [
+      children: [
           // Badges
           const SectionHeader(
             title: 'Badges',
@@ -291,8 +289,7 @@ class _DataDisplayScreenState extends State<DataDisplayScreen> {
   ],
 )''',
           ),
-        ],
-      ),
+      ],
     );
   }
 }

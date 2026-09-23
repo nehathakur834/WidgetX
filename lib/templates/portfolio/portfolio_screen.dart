@@ -263,6 +263,7 @@ class PortfolioScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(height: MediaQuery.of(context).padding.bottom),
                 ],
               ),
             ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgetx_ui/widgetx_ui.dart';
 import '../catalog/section_header.dart';
-import '../catalog/favorite_button.dart';
 
 class InputsScreen extends StatefulWidget {
   const InputsScreen({super.key});
@@ -20,14 +19,14 @@ class _InputsScreenState extends State<InputsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const WidgetXAppBar(
-        title: 'Inputs',
-        actions: [FavoriteButton(id: 'inputs')],
+    return ListView(
+      padding: EdgeInsets.fromLTRB(
+        WidgetXSpacing.md,
+        WidgetXSpacing.md,
+        WidgetXSpacing.md,
+        WidgetXSpacing.md + MediaQuery.of(context).padding.bottom,
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(WidgetXSpacing.md),
-        children: [
+      children: [
           const SectionHeader(title: 'Text Fields'),
           const WidgetXTextField(label: 'Full Name', hint: 'Enter your name'),
           const SizedBox(height: WidgetXSpacing.sm),
@@ -133,8 +132,7 @@ class _InputsScreenState extends State<InputsScreen> {
           const WidgetXOTPField(length: 6),
           const SizedBox(height: WidgetXSpacing.sm),
           const WidgetXOTPField(length: 4, obscureText: true),
-        ],
-      ),
+      ],
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-/// A searchable entry in the showcase catalogue.
+/// A searchable entry in the WidgetX catalogue.
 class SearchEntry {
   const SearchEntry({
     required this.id,
@@ -18,7 +18,7 @@ class SearchEntry {
 }
 
 // ---------------------------------------------------------------------------
-// Full index of every component + template in the showcase
+// Full index of every component + template in the app
 // ---------------------------------------------------------------------------
 const _allEntries = <SearchEntry>[
   // ── Components ──────────────────────────────────────────────────────────

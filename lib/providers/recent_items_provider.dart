@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// A recently-visited item in the showcase.
+/// A recently-visited item in the WidgetX app.
 class RecentItem {
   const RecentItem({required this.id, required this.label, required this.route});
   final String id;

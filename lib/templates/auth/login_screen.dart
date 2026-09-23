@@ -32,7 +32,12 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(WidgetXSpacing.xl),
+          padding: EdgeInsets.fromLTRB(
+            WidgetXSpacing.xl,
+            WidgetXSpacing.xl,
+            WidgetXSpacing.xl,
+            WidgetXSpacing.xl + MediaQuery.of(context).padding.bottom,
+          ),
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 420),
             child: Column(

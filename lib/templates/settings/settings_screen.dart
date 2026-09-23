@@ -20,15 +20,15 @@ class SettingsScreen extends ConsumerWidget {
         favoriteId: 'tpl-settings',
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(WidgetXSpacing.xl),
+        padding: EdgeInsets.fromLTRB(
+          WidgetXSpacing.xl,
+          WidgetXSpacing.xl,
+          WidgetXSpacing.xl,
+          WidgetXSpacing.xl + MediaQuery.of(context).padding.bottom,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Settings',
-                style: tt.headlineSmall
-                    ?.copyWith(fontWeight: FontWeight.w700)),
-            const SizedBox(height: WidgetXSpacing.xl),
-
             // Account section
             const _SectionHeader(title: 'Account'),
             WidgetXCard(

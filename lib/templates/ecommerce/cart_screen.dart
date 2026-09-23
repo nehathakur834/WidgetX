@@ -198,7 +198,12 @@ class CartScreen extends ConsumerWidget {
 
                 // Order summary
                 Container(
-                  padding: const EdgeInsets.all(WidgetXSpacing.xl),
+                  padding: EdgeInsets.fromLTRB(
+                    WidgetXSpacing.xl,
+                    WidgetXSpacing.xl,
+                    WidgetXSpacing.xl,
+                    WidgetXSpacing.xl + MediaQuery.of(context).padding.bottom,
+                  ),
                   decoration: BoxDecoration(
                     color: cs.surface,
                     border: Border(

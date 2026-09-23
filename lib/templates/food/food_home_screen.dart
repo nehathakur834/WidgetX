@@ -8,94 +8,96 @@ void _showRestaurantMenu(
   showWidgetXBottomSheet(
     context: context,
     title: restaurant.name,
-    body: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          '${restaurant.cuisine} • ${restaurant.deliveryTime} • Min \$${restaurant.minOrder.toStringAsFixed(0)}',
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(context).colorScheme.onSurfaceVariant),
-        ),
-        const SizedBox(height: WidgetXSpacing.md),
-        Text('Menu',
-            style: Theme.of(context)
-                .textTheme
-                .titleSmall
-                ?.copyWith(fontWeight: FontWeight.w600)),
-        const SizedBox(height: WidgetXSpacing.sm),
-        for (final item in restaurant.menuItems)
-          Padding(
-            padding: const EdgeInsets.only(bottom: WidgetXSpacing.sm),
-            child: Row(
-              children: [
-                if (item.isPopular)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 6, vertical: 2),
-                    margin: const EdgeInsets.only(right: 6),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .tertiaryContainer,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Text('Popular',
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: Theme.of(context)
-                              .colorScheme
-                              .onTertiaryContainer,
-                        )),
-                  ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(item.name,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w500)),
-                      Text(item.description,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall
-                              ?.copyWith(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSurfaceVariant)),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: WidgetXSpacing.md),
-                Text(
-                    '\$${item.price.toStringAsFixed(2)}',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: Theme.of(context).colorScheme.primary)),
-                const SizedBox(width: WidgetXSpacing.xs),
-                IconButton(
-                  icon: const Icon(Icons.add_circle_outline, size: 20),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    showWidgetXSnackbar(
-                      context: context,
-                      message: '${item.name} added to order',
-                      variant: WidgetXSnackbarVariant.success,
-                    );
-                  },
-                ),
-              ],
-            ),
+    body: Builder(
+      builder: (sheetContext) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '${restaurant.cuisine} • ${restaurant.deliveryTime} • Min \$${restaurant.minOrder.toStringAsFixed(0)}',
+            style: Theme.of(sheetContext).textTheme.bodySmall?.copyWith(
+                color: Theme.of(sheetContext).colorScheme.onSurfaceVariant),
           ),
-        const SizedBox(height: WidgetXSpacing.md),
-        WidgetXButton(
-          label: 'Go to Restaurant',
-          variant: WidgetXButtonVariant.primary,
-          isFullWidth: true,
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-      ],
+          const SizedBox(height: WidgetXSpacing.md),
+          Text('Menu',
+              style: Theme.of(sheetContext)
+                  .textTheme
+                  .titleSmall
+                  ?.copyWith(fontWeight: FontWeight.w600)),
+          const SizedBox(height: WidgetXSpacing.sm),
+          for (final item in restaurant.menuItems)
+            Padding(
+              padding: const EdgeInsets.only(bottom: WidgetXSpacing.sm),
+              child: Row(
+                children: [
+                  if (item.isPopular)
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6, vertical: 2),
+                      margin: const EdgeInsets.only(right: 6),
+                      decoration: BoxDecoration(
+                        color: Theme.of(sheetContext)
+                            .colorScheme
+                            .tertiaryContainer,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Text('Popular',
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: Theme.of(sheetContext)
+                                .colorScheme
+                                .onTertiaryContainer,
+                          )),
+                    ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(item.name,
+                            style: Theme.of(sheetContext)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(fontWeight: FontWeight.w500)),
+                        Text(item.description,
+                            style: Theme.of(sheetContext)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(
+                                    color: Theme.of(sheetContext)
+                                        .colorScheme
+                                        .onSurfaceVariant)),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: WidgetXSpacing.md),
+                  Text(
+                      '\$${item.price.toStringAsFixed(2)}',
+                      style: Theme.of(sheetContext).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(sheetContext).colorScheme.primary)),
+                  const SizedBox(width: WidgetXSpacing.xs),
+                  IconButton(
+                    icon: const Icon(Icons.add_circle_outline, size: 20),
+                    onPressed: () {
+                      Navigator.of(sheetContext).pop();
+                      showWidgetXSnackbar(
+                        context: context,
+                        message: '${item.name} added to order',
+                        variant: WidgetXSnackbarVariant.success,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          const SizedBox(height: WidgetXSpacing.md),
+          WidgetXButton(
+            label: 'Go to Restaurant',
+            variant: WidgetXButtonVariant.primary,
+            isFullWidth: true,
+            onPressed: () => Navigator.of(sheetContext).pop(),
+          ),
+        ],
+      ),
     ),
   );
 }
@@ -292,8 +294,11 @@ class _FoodHomeScreenState extends State<FoodHomeScreen> {
               ),
             ),
           ),
-          const SliverToBoxAdapter(
-              child: SizedBox(height: WidgetXSpacing.xl)),
+          SliverToBoxAdapter(
+            child: SizedBox(
+                height: WidgetXSpacing.xl +
+                    MediaQuery.of(context).padding.bottom),
+          ),
         ],
       ),
     );

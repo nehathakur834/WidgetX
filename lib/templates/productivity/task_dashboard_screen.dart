@@ -75,7 +75,7 @@ class _TaskDashboardScreenState extends State<TaskDashboardScreen> {
                     ),
                   ];
                 });
-                Navigator.of(context).pop();
+                Navigator.of(ctx).pop();
                 showWidgetXSnackbar(
                   context: context,
                   message: 'Task "$title" added',
@@ -105,7 +105,12 @@ class _TaskDashboardScreenState extends State<TaskDashboardScreen> {
         favoriteId: 'tpl-productivity',
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(WidgetXSpacing.xl),
+        padding: EdgeInsets.fromLTRB(
+          WidgetXSpacing.xl,
+          WidgetXSpacing.xl,
+          WidgetXSpacing.xl,
+          WidgetXSpacing.xl + MediaQuery.of(context).padding.bottom,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
