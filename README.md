@@ -23,7 +23,7 @@
 
 WidgetX UI is a complete Flutter UI ecosystem — not just a component library.
 
-It combines a **reusable Flutter package** (`packages/widgetx_ui`) with a **polished Storybook-style showcase application** (`apps/showcase`) containing complete, production-quality UI templates built entirely from WidgetX components.
+It combines a **reusable Flutter package** (`packages/widgetx_ui`) with a **polished interactive app** containing complete, production-quality UI templates built entirely from WidgetX components.
 
 The project demonstrates senior-level Flutter development including:
 
@@ -39,12 +39,9 @@ The project demonstrates senior-level Flutter development including:
 
 ---
 
-## Still not complete , improving it 
-
-
 ## Screenshots
 
-> Live showcase: [https://YOUR_USERNAME.github.io/widgetx_ui/](https://YOUR_USERNAME.github.io/widgetx_ui/)
+> Live demo: [https://YOUR_USERNAME.github.io/widgetx_ui/](https://YOUR_USERNAME.github.io/widgetx_ui/)
 
 | Light Theme | Dark Theme |
 |-------------|------------|
@@ -113,10 +110,9 @@ git clone https://github.com/YOUR_USERNAME/widgetx_ui.git
 cd widgetx_ui
 ```
 
-### 2. Run the showcase app
+### 2. Run the app
 
 ```bash
-cd apps/showcase
 flutter pub get
 flutter run -d chrome   # Web
 flutter run             # Mobile / desktop
@@ -310,25 +306,24 @@ widgetx_ui/
 │   │   └── utils/
 │   └── test/                     # 97+ widget, unit, theme tests
 │
-├── apps/showcase/                 # Interactive showcase application
-│   └── lib/
-│       ├── shell/                 # Responsive sidebar shell (go_router ShellRoute)
-│       ├── routing/               # go_router configuration
-│       ├── providers/             # Riverpod (theme, accent, search, favorites)
-│       ├── screens/               # Component demo screens (11)
-│       ├── templates/             # Complete UI templates (15 screens)
-│       │   ├── auth/
-│       │   ├── dashboard/
-│       │   ├── ecommerce/
-│       │   ├── finance/
-│       │   ├── realestate/
-│       │   ├── social/
-│       │   ├── food/
-│       │   ├── productivity/
-│       │   ├── portfolio/
-│       │   └── settings/
-│       ├── catalog/               # Reusable demo helpers (CodeBlock, SectionHeader)
-│       └── mock/                  # Local mock data
+├── lib/                           # Interactive app
+│   ├── shell/                     # Responsive sidebar shell (go_router ShellRoute)
+│   ├── routing/                   # go_router configuration
+│   ├── providers/                 # Riverpod (theme, accent, search, favorites)
+│   ├── screens/                   # Component demo screens (11)
+│   ├── templates/                 # Complete UI templates (15 screens)
+│   │   ├── auth/
+│   │   ├── dashboard/
+│   │   ├── ecommerce/
+│   │   ├── finance/
+│   │   ├── realestate/
+│   │   ├── social/
+│   │   ├── food/
+│   │   ├── productivity/
+│   │   ├── portfolio/
+│   │   └── settings/
+│   ├── catalog/                   # Reusable demo helpers (CodeBlock, SectionHeader)
+│   └── mock/                      # Local mock data
 │
 ├── docs/                          # Documentation
 ├── .github/workflows/             # CI (flutter_ci.yml) + Deploy (deploy.yml)
@@ -341,7 +336,7 @@ widgetx_ui/
 
 ### Core principles
 
-- **Package-first** — `widgetx_ui` package is fully independent; showcase imports it
+- **Package-first** — `widgetx_ui` package is fully independent; the app imports it
 - **Design tokens** — zero hardcoded values in any component
 - **Composition** — small, focused widgets with sensible defaults
 - **Accessibility first** — semantic labels, live regions, focus management, touch targets
@@ -352,7 +347,7 @@ widgetx_ui/
 
 ## State Management
 
-The showcase app uses [Riverpod](https://riverpod.dev) with `SharedPreferences` persistence:
+The app uses [Riverpod](https://riverpod.dev) with `SharedPreferences` persistence:
 
 | Provider | Type | Persisted |
 |----------|------|-----------|
@@ -475,7 +470,7 @@ https://YOUR_USERNAME.github.io/widgetx_ui/
 - [ ] Booking template (hotel, dates, guests)
 - [ ] pub.dev package publication
 - [ ] Melos monorepo tooling
-- [ ] Component search in showcase
+- [ ] Component search
 - [ ] Device preview frame wrapper
 
 ---
