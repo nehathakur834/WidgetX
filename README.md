@@ -486,7 +486,7 @@ MIT — see [LICENSE](LICENSE).
 **YOUR NAME**  
 GitHub: [@nehathakur834](https://github.com/nehathakur834)  
 LinkedIn: [Neha Thakur](https://www.linkedin.com/in/neha-thakur-534749110)  
-Portfolio: [YOUR_PORTFOLIO_URL](https://YOUR_PORTFOLIO_URL)
+Portfolio: [nehathakurportfolio.netlify.app](https://nehathakurportfolio.netlify.app/)
 
 ---
 
