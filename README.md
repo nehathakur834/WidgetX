@@ -6,14 +6,14 @@
 
 **Reusable widgets. Complete UI templates. Responsive layouts. Beautiful animations. Production-quality architecture.**
 
-[![CI](https://github.com/YOUR_USERNAME/widgetx_ui/actions/workflows/flutter_ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/widgetx_ui/actions)
-[![Deploy](https://github.com/YOUR_USERNAME/widgetx_ui/actions/workflows/deploy.yml/badge.svg)](https://YOUR_USERNAME.github.io/widgetx_ui/)
+[![CI](https://github.com/nehathakur834/widgetx_ui/actions/workflows/flutter_ci.yml/badge.svg)](https://github.com/nehathakur834/widgetx_ui/actions)
+[![Deploy](https://github.com/nehathakur834/widgetx_ui/actions/workflows/deploy.yml/badge.svg)](https://nehathakur834.github.io/widgetx_ui/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter)](https://flutter.dev)
 [![Material 3](https://img.shields.io/badge/Material-3-6750A4)](https://m3.material.io)
 [![Riverpod](https://img.shields.io/badge/Riverpod-2.x-00B0D7)](https://riverpod.dev)
 
-[**Live Demo**](https://YOUR_USERNAME.github.io/widgetx_ui/) · [**Documentation**](docs/) · [**Contributing**](CONTRIBUTING.md)
+[**Live Demo**](https://nehathakur834.github.io/widgetx_ui/) · [**Documentation**](docs/) · [**Contributing**](CONTRIBUTING.md)
 
 </div>
 
@@ -41,7 +41,7 @@ The project demonstrates senior-level Flutter development including:
 
 ## Screenshots
 
-> Live demo: [https://YOUR_USERNAME.github.io/widgetx_ui/](https://YOUR_USERNAME.github.io/widgetx_ui/)
+> Live demo: [https://nehathakur834.github.io/widgetx_ui/](https://nehathakur834.github.io/widgetx_ui/)
 
 | Light Theme | Dark Theme |
 |-------------|------------|
@@ -106,7 +106,7 @@ The project demonstrates senior-level Flutter development including:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/widgetx_ui.git
+git clone https://github.com/nehathakur834/widgetx_ui.git
 cd widgetx_ui
 ```
 
@@ -443,7 +443,7 @@ Two GitHub Actions workflows:
 
 Builds Flutter Web and deploys to GitHub Pages at:
 ```
-https://YOUR_USERNAME.github.io/widgetx_ui/
+https://nehathakur834.github.io/widgetx_ui/
 ```
 
 ---
@@ -484,8 +484,8 @@ MIT — see [LICENSE](LICENSE).
 ## Author
 
 **YOUR NAME**  
-GitHub: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)  
-LinkedIn: [YOUR_LINKEDIN_URL](https://linkedin.com/in/YOUR_USERNAME)  
+GitHub: [@nehathakur834](https://github.com/nehathakur834)  
+LinkedIn: [Neha Thakur](https://www.linkedin.com/in/neha-thakur-534749110)  
 Portfolio: [YOUR_PORTFOLIO_URL](https://YOUR_PORTFOLIO_URL)
 
 ---
