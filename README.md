@@ -43,17 +43,41 @@ The project demonstrates senior-level Flutter development including:
 
 > Live demo: [https://nehathakur834.github.io/widgetx_ui/](https://nehathakur834.github.io/widgetx_ui/)
 
-| Light Theme | Dark Theme |
-|-------------|------------|
-| ![Home Light](docs/images/home-light.png) | ![Home Dark](docs/images/home-dark.png) |
+### Home Light
 
-| Dashboard Template | E-Commerce Template |
-|--------------------|---------------------|
-| ![Dashboard](docs/images/dashboard.png) | ![E-Commerce](docs/images/ecommerce.png) |
+<p align="center">
+  <img src="docs/images/home-light.png" width="220"/>
+</p>
 
-| Real Estate Template | Finance Template |
-|----------------------|-----------------|
-| ![Real Estate](docs/images/realestate.png) | ![Finance](docs/images/finance.png) |
+### Home Dark
+
+<p align="center">
+  <img src="docs/images/home-dark.png" width="220"/>
+</p>
+
+### Dashboard Template
+
+<p align="center">
+  <img src="docs/images/dashboard.png" width="220"/>
+</p>
+
+### E-Commerce Template
+
+<p align="center">
+  <img src="docs/images/ecommerce.png" width="220"/>
+</p>
+
+### Real Estate Template
+
+<p align="center">
+  <img src="docs/images/realestate.png" width="220"/>
+</p>
+
+### Finance Template
+
+<p align="center">
+  <img src="docs/images/finance.png" width="220"/>
+</p>
 
 ---
 
