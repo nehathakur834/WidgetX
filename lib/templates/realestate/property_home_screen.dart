@@ -139,16 +139,46 @@ class _PropertyCard extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Container(
-                height: 160,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: cs.surfaceContainerHighest,
-                  borderRadius: BorderRadius.circular(WidgetXRadius.sm),
-                ),
-                child: Center(
-                  child: Icon(Icons.home_outlined,
-                      size: 48, color: cs.outlineVariant),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(WidgetXRadius.sm),
+                child: SizedBox(
+                  height: 160,
+                  width: double.infinity,
+                  child: property.imageUrl.isNotEmpty
+                      ? Image.network(
+                          property.imageUrl,
+                          fit: BoxFit.cover,
+                          loadingBuilder: (context, child, progress) =>
+                              progress == null
+                                  ? child
+                                  : Container(
+                                      color: cs.surfaceContainerHighest,
+                                      child: Center(
+                                        child: SizedBox(
+                                          width: 20,
+                                          height: 20,
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2,
+                                            color: cs.outlineVariant,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                          errorBuilder: (context, error, e) => Container(
+                            color: cs.surfaceContainerHighest,
+                            child: Center(
+                              child: Icon(Icons.home_outlined,
+                                  size: 48, color: cs.outlineVariant),
+                            ),
+                          ),
+                        )
+                      : Container(
+                          color: cs.surfaceContainerHighest,
+                          child: Center(
+                            child: Icon(Icons.home_outlined,
+                                size: 48, color: cs.outlineVariant),
+                          ),
+                        ),
                 ),
               ),
               if (property.isFeatured)

@@ -238,7 +238,7 @@ class _ProductCard extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Image placeholder with overlay
+                  // Product image
                   Expanded(
                     child: Container(
                       width: double.infinity,
@@ -248,9 +248,41 @@ class _ProductCard extends ConsumerWidget {
                       ),
                       child: Stack(
                         children: [
-                          Center(
-                            child: Icon(Icons.image_outlined,
-                                size: 40, color: cs.outlineVariant),
+                          Positioned.fill(
+                            child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(WidgetXRadius.sm),
+                              child: product.imageUrl.isNotEmpty
+                                  ? Image.network(
+                                      product.imageUrl,
+                                      fit: BoxFit.cover,
+                                      loadingBuilder: (context, child, progress) =>
+                                          progress == null
+                                              ? child
+                                              : Container(
+                                                  color: cs.surfaceContainerHighest,
+                                                  child: Center(
+                                                    child: SizedBox(
+                                                      width: 20,
+                                                      height: 20,
+                                                      child: CircularProgressIndicator(
+                                                        strokeWidth: 2,
+                                                        color: cs.outlineVariant,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                      errorBuilder: (context, error, e) => Center(
+                                        child: Icon(Icons.image_outlined,
+                                            size: 40,
+                                            color: cs.outlineVariant),
+                                      ),
+                                    )
+                                  : Center(
+                                      child: Icon(Icons.image_outlined,
+                                          size: 40, color: cs.outlineVariant),
+                                    ),
+                            ),
                           ),
                           if (product.isNew)
                             Positioned(

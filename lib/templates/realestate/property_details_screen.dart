@@ -44,18 +44,43 @@ class PropertyDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image gallery
+            // Property image
             SizedBox(
               height: 260,
               child: Stack(
                 children: [
-                  Container(
-                    width: double.infinity,
-                    color: cs.surfaceContainerHighest,
-                    child: Center(
-                      child: Icon(Icons.home_outlined,
-                          size: 80, color: cs.outlineVariant),
-                    ),
+                  Positioned.fill(
+                    child: _property.imageUrl.isNotEmpty
+                        ? Image.network(
+                            _property.imageUrl,
+                            fit: BoxFit.cover,
+                            loadingBuilder: (context, child, progress) =>
+                                progress == null
+                                    ? child
+                                    : Container(
+                                        color: cs.surfaceContainerHighest,
+                                        child: Center(
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2,
+                                            color: cs.outlineVariant,
+                                          ),
+                                        ),
+                                      ),
+                            errorBuilder: (context, error, e) => Container(
+                              color: cs.surfaceContainerHighest,
+                              child: Center(
+                                child: Icon(Icons.home_outlined,
+                                    size: 80, color: cs.outlineVariant),
+                              ),
+                            ),
+                          )
+                        : Container(
+                            color: cs.surfaceContainerHighest,
+                            child: Center(
+                              child: Icon(Icons.home_outlined,
+                                  size: 80, color: cs.outlineVariant),
+                            ),
+                          ),
                   ),
                   Positioned(
                     bottom: 12,

@@ -11,11 +11,13 @@ class MockProduct {
     this.description = '',
     this.isNew = false,
     this.isFeatured = false,
+    this.imageUrl = '',
   });
   final String id, name, category, description;
   final double price, rating;
   final int reviewCount;
   final bool isNew, isFeatured;
+  final String imageUrl;
 }
 
 class MockTransaction {
@@ -46,11 +48,13 @@ class MockProperty {
     required this.type,
     this.description = '',
     this.isFeatured = false,
+    this.imageUrl = '',
   });
   final String id, title, location, type, description;
   final double price;
   final int beds, baths, sqft;
   final bool isFeatured;
+  final String imageUrl;
 }
 
 class MockTask {
@@ -176,6 +180,7 @@ abstract final class MockData {
           'Experience superior sound quality with 30-hour battery life, '
           'active noise cancellation, and premium comfort for all-day wear.',
       isFeatured: true,
+      imageUrl: 'https://picsum.photos/id/3/300/300',
     ),
     MockProduct(
       id: '2',
@@ -187,6 +192,7 @@ abstract final class MockData {
       description:
           'Lightweight and responsive running shoes with energy-return foam '
           'and breathable mesh upper for maximum performance.',
+      imageUrl: 'https://picsum.photos/id/21/300/300',
     ),
     MockProduct(
       id: '3',
@@ -199,6 +205,7 @@ abstract final class MockData {
           'Swiss movement, sapphire crystal glass, and genuine leather strap. '
           'A timeless piece for every occasion.',
       isNew: true,
+      imageUrl: 'https://picsum.photos/id/48/300/300',
     ),
     MockProduct(
       id: '4',
@@ -210,6 +217,7 @@ abstract final class MockData {
       description:
           'Tracks your hydration, reminds you to drink, and keeps your '
           'water cold for 24 hours or hot for 12 hours.',
+      imageUrl: 'https://picsum.photos/id/63/300/300',
     ),
     MockProduct(
       id: '5',
@@ -221,6 +229,7 @@ abstract final class MockData {
       description:
           'Non-slip, eco-friendly TPE foam with alignment lines and '
           'carry strap. Perfect for studio or home practice.',
+      imageUrl: 'https://picsum.photos/id/96/300/300',
     ),
     MockProduct(
       id: '6',
@@ -233,6 +242,7 @@ abstract final class MockData {
           'Ergonomic aluminum stand with 6 height levels. Compatible with '
           'all laptops 10–17". Reduces neck strain and improves posture.',
       isFeatured: true,
+      imageUrl: 'https://picsum.photos/id/119/300/300',
     ),
     MockProduct(
       id: '7',
@@ -245,6 +255,7 @@ abstract final class MockData {
           'Tactile Cherry MX switches, RGB backlight, and compact TKL layout. '
           'USB-C with braided cable.',
       isNew: true,
+      imageUrl: 'https://picsum.photos/id/160/300/300',
     ),
     MockProduct(
       id: '8',
@@ -256,6 +267,7 @@ abstract final class MockData {
       description:
           'High-density foam roller for muscle recovery and myofascial release. '
           'Grid texture for targeted deep tissue massage.',
+      imageUrl: 'https://picsum.photos/id/225/300/300',
     ),
   ];
 
@@ -350,6 +362,7 @@ abstract final class MockData {
           'Stunning downtown studio in the heart of Manhattan. Floor-to-ceiling '
           'windows, open kitchen, and access to rooftop terrace.',
       isFeatured: true,
+      imageUrl: 'https://picsum.photos/id/164/600/400',
     ),
     MockProperty(
       id: '2',
@@ -363,6 +376,7 @@ abstract final class MockData {
       description:
           'Spacious family home with large backyard, modern kitchen, '
           'and quiet suburban neighborhood. Top-rated school district.',
+      imageUrl: 'https://picsum.photos/id/182/600/400',
     ),
     MockProperty(
       id: '3',
@@ -377,6 +391,7 @@ abstract final class MockData {
           'Exclusive penthouse with panoramic city views, private terrace, '
           'chef\'s kitchen, and 24/7 concierge service.',
       isFeatured: true,
+      imageUrl: 'https://picsum.photos/id/316/600/400',
     ),
     MockProperty(
       id: '4',
@@ -390,6 +405,7 @@ abstract final class MockData {
       description:
           'Oceanfront condo with private beach access, resort-style pool, '
           'and stunning Atlantic views from every room.',
+      imageUrl: 'https://picsum.photos/id/403/600/400',
     ),
     MockProperty(
       id: '5',
@@ -403,6 +419,7 @@ abstract final class MockData {
       description:
           'Charming mountain cabin surrounded by pine trees. Perfect for '
           'year-round activities — skiing in winter, hiking in summer.',
+      imageUrl: 'https://picsum.photos/id/435/600/400',
     ),
     MockProperty(
       id: '6',
@@ -416,6 +433,7 @@ abstract final class MockData {
       description:
           'Converted warehouse loft with exposed brick, industrial design, '
           'and a vibrant arts district neighbourhood.',
+      imageUrl: 'https://picsum.photos/id/531/600/400',
     ),
   ];
 

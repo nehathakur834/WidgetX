@@ -73,15 +73,43 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image gallery placeholder
-            Container(
+            // Product image
+            SizedBox(
               height: 300,
-              color: cs.surfaceContainerHighest,
               child: Stack(
                 children: [
-                  Center(
-                    child: Icon(Icons.image_outlined,
-                        size: 80, color: cs.outlineVariant),
+                  Positioned.fill(
+                    child: _product.imageUrl.isNotEmpty
+                        ? Image.network(
+                            _product.imageUrl,
+                            fit: BoxFit.cover,
+                            loadingBuilder: (context, child, progress) =>
+                                progress == null
+                                    ? child
+                                    : Container(
+                                        color: cs.surfaceContainerHighest,
+                                        child: Center(
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2,
+                                            color: cs.outlineVariant,
+                                          ),
+                                        ),
+                                      ),
+                            errorBuilder: (context, error, e) => Container(
+                              color: cs.surfaceContainerHighest,
+                              child: Center(
+                                child: Icon(Icons.image_outlined,
+                                    size: 80, color: cs.outlineVariant),
+                              ),
+                            ),
+                          )
+                        : Container(
+                            color: cs.surfaceContainerHighest,
+                            child: Center(
+                              child: Icon(Icons.image_outlined,
+                                  size: 80, color: cs.outlineVariant),
+                            ),
+                          ),
                   ),
                   // Gallery indicator
                   Positioned(
