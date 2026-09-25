@@ -46,7 +46,7 @@ The project demonstrates senior-level Flutter development including:
 ### Home Light
 
 <p align="center">
-  <img src="docs/images/.png" width="220"/>
+  <img src="docs/images/home-light.png" width="220"/>
 </p>
 
 ### Home Dark
