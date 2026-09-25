@@ -41,8 +41,6 @@ The project demonstrates senior-level Flutter development including:
 
 ## Screenshots
 
-> Live demo: [https://nehathakur834.github.io/widgetx_ui/](https://nehathakur834.github.io/widgetx_ui/)
-
 ### Home Light
 
 <p align="center">
